@@ -32,6 +32,10 @@ export default function PageContent({pageOne, pageTwo}) {
 
     return (
         <div>
+            <div className="bookHeader">
+                <h1>{data.book.title}</h1>
+                <p>By {data.book.author}</p>
+            </div>
             <div class="row">
                 {data
             .book
