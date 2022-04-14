@@ -1,28 +1,39 @@
 import React from "react";
-import { useQuery, gql } from '@apollo/client'
+import {usePageContent} from "../hooks/usePageContent";
 
-const GET_PAGE_CONTENT = gql`
-    query {
-        book {
-        author
-        pages{
-            content
-            pageIndex
-            tokens {
-            position
-            value
-            }
-        }
-        title
-        }
+export default function PageContent() {
+
+    const {loading, data} = usePageContent()
+
+
+    function splitPageContent(content) {
+        let arr = content.split(" ");
+        return arr
     }
-`
+    function getTokenValue(e) {
+        const data = JSON.parse(e.target.dataset.token)
+        console.log(data)
+    }
 
-export default function PageContent(){
 
-    const {error, data, loading} = useQuery(GET_PAGE_CONTENT)
+    if (loading) 
+        return <div>Loading...</div>
 
-    console.log({error, loading, data})
-
-    return <div></div>
+    return (
+        <div>
+            {data
+                .book
+                .pages
+                .map((page) => {
+                    return (
+                        <div>
+                            {splitPageContent(page.content).map((text, index) => {
+                                return <span data-token={JSON.stringify(page.tokens[index])} onClick={getTokenValue}>{text + " "}
+                                </span>
+                            })}
+                        </div>
+                    )
+                })}
+        </div>
+    )
 }
