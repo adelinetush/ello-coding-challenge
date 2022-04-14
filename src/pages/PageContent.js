@@ -1,8 +1,9 @@
 import React from "react";
 import {usePageContent} from "../hooks/usePageContent";
 import { useNavigate } from 'react-router-dom'
+import '../css/pages.css'
 
-export default function PageContent(props) {
+export default function PageContent({pageOne, pageTwo}) {
 
     const {loading, data} = usePageContent()
 
@@ -31,22 +32,41 @@ export default function PageContent(props) {
 
     return (
         <div>
-            
-            {data
-                .book
-                .pages
-                .map((page) => {
+            <div class="row">
+                {data
+            .book
+            .pages
+            .map((page, index) => {
+                if (index == pageOne) {
                     return (
-                        <div>
-                            {splitPageContent(page.content).map((text, index) => {
+                    <div class="column" style={{background: "#aaa"}}>
+                        <p className="pageIndex">Page {pageOne}</p>
+                        {splitPageContent(page.content).map((text, index) => {
                                 //the split content is displayed as a span, it's an array of words and each word is clickable
                                 //onClick, get the token value
-                                return <span data-token={JSON.stringify(page.tokens[index])} onClick={getTokenValue}> {text + " "}
+                                return <span data-token={JSON.stringify(page.tokens[index])} onClick={getTokenValue}>{text + " "}
                                 </span>
                             })}
-                        </div>
-                    )
-                })}
-        </div>
+                        
+                    </div>
+                )
+                }
+                if (index == pageTwo) {
+                    return (
+                <div class="column" style={{background: "#bbb"}}>
+                    <p>Page {pageTwo}</p>
+                    {splitPageContent(page.content).map((text, index) => {
+                                //Second Page
+                                return <span data-token={JSON.stringify(page.tokens[index])} onClick={getTokenValue}>{text + " "}
+                                </span>
+                            })}
+                    
+                </div>
+                )
+                }
+            })
+        }
+            </div>
+    </div>
     )
 }

@@ -1,14 +1,14 @@
 import './App.css'
 import {Route, Routes} from 'react-router-dom'
-import PageContent from './pages/PageContent'
-import TokenPage from './pages/TokenPage';
+import TokenView from './pages/TokenView';
+import PageComponent from './components/PageComponent';
 
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route strict exact path='/' element={< PageContent />}></Route>
-                <Route strict exact path='/:token' element={< TokenPage />}></Route>
+                <Route strict exact path='/' element={< PageComponent />}></Route>
+                <Route strict exact path='/:token' element={< TokenView />}></Route>
             </Routes>
         </div>
     );
