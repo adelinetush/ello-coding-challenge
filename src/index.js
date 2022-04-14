@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client'
+import {BrowserRouter} from 'react-router-dom';
 
 const client = new ApolloClient({uri: "https://fullstack-engineer-test-n4ouilzfna-uc.a.run.app/graphql", cache: new InMemoryCache()})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ApolloProvider client={client}>
-            <App/>
-        </ApolloProvider>
+        <BrowserRouter>
+            <ApolloProvider client={client}>
+                <App/>
+            </ApolloProvider>
+        </BrowserRouter>
     </React.StrictMode>
 );
 
