@@ -43,7 +43,7 @@ export default function PageContent({pageOne, pageTwo}) {
             .map((page, index) => {
                 if (index == pageOne) {
                     return (
-                    <div class="column" style={{background: "#aaa"}}>
+                    <div class="column" style={{background: "#5E9DD8"}}>
                         <p className="pageIndex">Page {pageOne}</p>
                         {splitPageContent(page.content).map((text, index) => {
                                 //the split content is displayed as a span, it's an array of words and each word is clickable
@@ -57,7 +57,7 @@ export default function PageContent({pageOne, pageTwo}) {
                 }
                 if (index == pageTwo) {
                     return (
-                <div class="column" style={{background: "#bbb"}}>
+                <div class="column" style={{background: "#CAEAF3"}}>
                     <p>Page {pageTwo}</p>
                     {splitPageContent(page.content).map((text, index) => {
                                 //Second Page
