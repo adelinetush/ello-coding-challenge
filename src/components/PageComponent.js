@@ -7,28 +7,8 @@ export default class PageComponent extends React.Component {
 
     firstPage = 0;
     secondPage = 1;
-    loading = true;
-    data = [];
-    constructor(props) {
-        super()
 
-        this.state = {
-            name: "Unknown"
-        }
-    }
-
-    write = (e) => {
-        const data = JSON.parse(e.target.dataset.token)
-        console.log(data)
-
-    }
-    splitPageContent = (content) => {
-        let arr = content.split(" ");
-        return arr
-    }
-    setName = (nameValue) => {
-        this.setState({name: nameValue})
-    }
+    //handles page navigation
     nextPage=()=>{
         //I hardcoded the last page because it wasn't a requirement for the challenge
         if(this.secondPage < 27){
@@ -42,8 +22,6 @@ export default class PageComponent extends React.Component {
                 secondPage: this.secondPage = 1
             })
         }
-        console.log(this.firstPage + "_" + "First Page")
-        console.log(this.secondPage + "_" + "Second Page")
         
     }
     render() {
